@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Exercise">
+          <Key>
+            <PropertyRef Name="ExID" />
+          </Key>
+          <Property Name="ExID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImgLink" Type="nvarchar" MaxLength="100" />
+          <Property Name="Kph" Type="int" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" />
+          <Property Name="Kcal" Type="int" />
+          <Property Name="Recipe" Type="nvarchar(max)" />
+          <Property Name="Ingredients" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="500" />
+          <Property Name="MealTime" Type="int" />
+          <Property Name="Imgsrc" Type="varchar" MaxLength="100" />
+          <Property Name="DonVi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fat" Type="int" />
+          <Property Name="Carbs" Type="int" />
+          <Property Name="Protein" Type="int" />
+          <Property Name="Sat_Fat" Type="int" />
+          <Property Name="Other_Fat" Type="int" />
+        </EntityType>
+        <EntityType Name="FUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UWeight" Type="int" />
+          <Property Name="UHeight" Type="int" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Sex" Type="int" />
+          <Property Name="UStatus" Type="int" />
+          <Property Name="Passwrd" Type="varchar" MaxLength="20" />
+          <Property Name="Username" Type="varchar" MaxLength="20" />
+          <Property Name="Avatar" Type="varchar" MaxLength="50" />
+          <Property Name="ComsumedCalo" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserExercise">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ExID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ExID" Type="int" Nullable="false" />
+          <Property Name="Favourite" Type="int" />
+        </EntityType>
+        <EntityType Name="UserFood">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="FoodID" Type="int" Nullable="false" />
+          <Property Name="Favorite" Type="int" />
+          <Property Name="Last_eat" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="UserHistory">
+          <Key>
+            <PropertyRef Name="HistoryID" />
+          </Key>
+          <Property Name="HistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="FoodID" Type="int" />
+          <Property Name="Meal" Type="int" />
+          <Property Name="eatDate" Type="smalldatetime" />
+        </EntityType>
+        <Association Name="fk_H_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+          <End Role="UserHistory" Type="Self.UserHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="UserHistory">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_H_User">
+          <End Role="FUser" Type="Self.FUser" Multiplicity="0..1" />
+          <End Role="UserHistory" Type="Self.UserHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserHistory">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UE_Exe">
+          <End Role="Exercise" Type="Self.Exercise" Multiplicity="1" />
+          <End Role="UserExercise" Type="Self.UserExercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercise">
+              <PropertyRef Name="ExID" />
+            </Principal>
+            <Dependent Role="UserExercise">
+              <PropertyRef Name="ExID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UE_User">
+          <End Role="FUser" Type="Self.FUser" Multiplicity="1" />
+          <End Role="UserExercise" Type="Self.UserExercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserExercise">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UF_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="1" />
+          <End Role="UserFood" Type="Self.UserFood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="UserFood">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UF_User">
+          <End Role="FUser" Type="Self.FUser" Multiplicity="1" />
+          <End Role="UserFood" Type="Self.UserFood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserFood">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLMAModelStoreContainer">
+          <EntitySet Name="Exercise" EntityType="Self.Exercise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FUser" EntityType="Self.FUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserExercise" EntityType="Self.UserExercise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFood" EntityType="Self.UserFood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserHistory" EntityType="Self.UserHistory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_H_Food" Association="Self.fk_H_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="UserHistory" EntitySet="UserHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_H_User" Association="Self.fk_H_User">
+            <End Role="FUser" EntitySet="FUser" />
+            <End Role="UserHistory" EntitySet="UserHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UE_Exe" Association="Self.fk_UE_Exe">
+            <End Role="Exercise" EntitySet="Exercise" />
+            <End Role="UserExercise" EntitySet="UserExercise" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UE_User" Association="Self.fk_UE_User">
+            <End Role="FUser" EntitySet="FUser" />
+            <End Role="UserExercise" EntitySet="UserExercise" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UF_Food" Association="Self.fk_UF_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="UserFood" EntitySet="UserFood" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UF_User" Association="Self.fk_UF_User">
+            <End Role="FUser" EntitySet="FUser" />
+            <End Role="UserFood" EntitySet="UserFood" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Exercise">
+          <Key>
+            <PropertyRef Name="ExID" />
+          </Key>
+          <Property Name="ExID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImgLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Kph" Type="Int32" />
+          <NavigationProperty Name="UserExercise" Relationship="Self.fk_UE_Exe" FromRole="Exercise" ToRole="UserExercise" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Kcal" Type="Int32" />
+          <Property Name="Recipe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ingredients" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MealTime" Type="Int32" />
+          <Property Name="Imgsrc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fat" Type="Int32" />
+          <Property Name="Carbs" Type="Int32" />
+          <Property Name="Protein" Type="Int32" />
+          <Property Name="Sat_Fat" Type="Int32" />
+          <Property Name="Other_Fat" Type="Int32" />
+          <NavigationProperty Name="UserHistory" Relationship="Self.fk_H_Food" FromRole="Food" ToRole="UserHistory" />
+          <NavigationProperty Name="UserFood" Relationship="Self.fk_UF_Food" FromRole="Food" ToRole="UserFood" />
+        </EntityType>
+        <EntityType Name="FUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UWeight" Type="Int32" />
+          <Property Name="UHeight" Type="Int32" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="UStatus" Type="Int32" />
+          <Property Name="Passwrd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ComsumedCalo" Type="Int32" />
+          <NavigationProperty Name="UserHistory" Relationship="Self.fk_H_User" FromRole="FUser" ToRole="UserHistory" />
+          <NavigationProperty Name="UserExercise" Relationship="Self.fk_UE_User" FromRole="FUser" ToRole="UserExercise" />
+          <NavigationProperty Name="UserFood" Relationship="Self.fk_UF_User" FromRole="FUser" ToRole="UserFood" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserExercise">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ExID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ExID" Type="Int32" Nullable="false" />
+          <Property Name="Favourite" Type="Int32" />
+          <NavigationProperty Name="Exercise" Relationship="Self.fk_UE_Exe" FromRole="UserExercise" ToRole="Exercise" />
+          <NavigationProperty Name="FUser" Relationship="Self.fk_UE_User" FromRole="UserExercise" ToRole="FUser" />
+        </EntityType>
+        <EntityType Name="UserFood">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="FoodID" Type="Int32" Nullable="false" />
+          <Property Name="Favorite" Type="Int32" />
+          <Property Name="Last_eat" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Food" Relationship="Self.fk_UF_Food" FromRole="UserFood" ToRole="Food" />
+          <NavigationProperty Name="FUser" Relationship="Self.fk_UF_User" FromRole="UserFood" ToRole="FUser" />
+        </EntityType>
+        <EntityType Name="UserHistory">
+          <Key>
+            <PropertyRef Name="HistoryID" />
+          </Key>
+          <Property Name="HistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="FoodID" Type="Int32" />
+          <Property Name="Meal" Type="Int32" />
+          <Property Name="eatDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Food" Relationship="Self.fk_H_Food" FromRole="UserHistory" ToRole="Food" />
+          <NavigationProperty Name="FUser" Relationship="Self.fk_H_User" FromRole="UserHistory" ToRole="FUser" />
+        </EntityType>
+        <Association Name="fk_UE_Exe">
+          <End Role="Exercise" Type="Self.Exercise" Multiplicity="1" />
+          <End Role="UserExercise" Type="Self.UserExercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercise">
+              <PropertyRef Name="ExID" />
+            </Principal>
+            <Dependent Role="UserExercise">
+              <PropertyRef Name="ExID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_H_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+          <End Role="UserHistory" Type="Self.UserHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="UserHistory">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UF_Food">
+          <End Role="Food" Type="Self.Food" Multiplicity="1" />
+          <End Role="UserFood" Type="Self.UserFood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food">
+              <PropertyRef Name="FoodID" />
+            </Principal>
+            <Dependent Role="UserFood">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_H_User">
+          <End Role="FUser" Type="Self.FUser" Multiplicity="0..1" />
+          <End Role="UserHistory" Type="Self.UserHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserHistory">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UE_User">
+          <End Role="FUser" Type="Self.FUser" Multiplicity="1" />
+          <End Role="UserExercise" Type="Self.UserExercise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserExercise">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UF_User">
+          <End Role="FUser" Type="Self.FUser" Multiplicity="1" />
+          <End Role="UserFood" Type="Self.UserFood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserFood">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLMAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Exercise" EntityType="Self.Exercise" />
+          <EntitySet Name="Food" EntityType="Self.Food" />
+          <EntitySet Name="FUser" EntityType="Self.FUser" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UserExercise" EntityType="Self.UserExercise" />
+          <EntitySet Name="UserFood" EntityType="Self.UserFood" />
+          <EntitySet Name="UserHistory" EntityType="Self.UserHistory" />
+          <AssociationSet Name="fk_UE_Exe" Association="Self.fk_UE_Exe">
+            <End Role="Exercise" EntitySet="Exercise" />
+            <End Role="UserExercise" EntitySet="UserExercise" />
+          </AssociationSet>
+          <AssociationSet Name="fk_H_Food" Association="Self.fk_H_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="UserHistory" EntitySet="UserHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UF_Food" Association="Self.fk_UF_Food">
+            <End Role="Food" EntitySet="Food" />
+            <End Role="UserFood" EntitySet="UserFood" />
+          </AssociationSet>
+          <AssociationSet Name="fk_H_User" Association="Self.fk_H_User">
+            <End Role="FUser" EntitySet="FUser" />
+            <End Role="UserHistory" EntitySet="UserHistory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UE_User" Association="Self.fk_UE_User">
+            <End Role="FUser" EntitySet="FUser" />
+            <End Role="UserExercise" EntitySet="UserExercise" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UF_User" Association="Self.fk_UF_User">
+            <End Role="FUser" EntitySet="FUser" />
+            <End Role="UserFood" EntitySet="UserFood" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLMAModelStoreContainer" CdmEntityContainer="QLMAEntities">
+          <EntitySetMapping Name="Exercise">
+            <EntityTypeMapping TypeName="QLMAModel.Exercise">
+              <MappingFragment StoreEntitySet="Exercise">
+                <ScalarProperty Name="ExID" ColumnName="ExID" />
+                <ScalarProperty Name="ExName" ColumnName="ExName" />
+                <ScalarProperty Name="ImgLink" ColumnName="ImgLink" />
+                <ScalarProperty Name="Kph" ColumnName="Kph" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Food">
+            <EntityTypeMapping TypeName="QLMAModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Kcal" ColumnName="Kcal" />
+                <ScalarProperty Name="Recipe" ColumnName="Recipe" />
+                <ScalarProperty Name="Ingredients" ColumnName="Ingredients" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="MealTime" ColumnName="MealTime" />
+                <ScalarProperty Name="Imgsrc" ColumnName="Imgsrc" />
+                <ScalarProperty Name="DonVi" ColumnName="DonVi" />
+                <ScalarProperty Name="Fat" ColumnName="Fat" />
+                <ScalarProperty Name="Carbs" ColumnName="Carbs" />
+                <ScalarProperty Name="Protein" ColumnName="Protein" />
+                <ScalarProperty Name="Sat_Fat" ColumnName="Sat_Fat" />
+                <ScalarProperty Name="Other_Fat" ColumnName="Other_Fat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FUser">
+            <EntityTypeMapping TypeName="QLMAModel.FUser">
+              <MappingFragment StoreEntitySet="FUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UName" ColumnName="UName" />
+                <ScalarProperty Name="UWeight" ColumnName="UWeight" />
+                <ScalarProperty Name="UHeight" ColumnName="UHeight" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="UStatus" ColumnName="UStatus" />
+                <ScalarProperty Name="Passwrd" ColumnName="Passwrd" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="ComsumedCalo" ColumnName="ComsumedCalo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLMAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserExercise">
+            <EntityTypeMapping TypeName="QLMAModel.UserExercise">
+              <MappingFragment StoreEntitySet="UserExercise">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ExID" ColumnName="ExID" />
+                <ScalarProperty Name="Favourite" ColumnName="Favourite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserFood">
+            <EntityTypeMapping TypeName="QLMAModel.UserFood">
+              <MappingFragment StoreEntitySet="UserFood">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="Favorite" ColumnName="Favorite" />
+                <ScalarProperty Name="Last_eat" ColumnName="Last_eat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserHistory">
+            <EntityTypeMapping TypeName="QLMAModel.UserHistory">
+              <MappingFragment StoreEntitySet="UserHistory">
+                <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="Meal" ColumnName="Meal" />
+                <ScalarProperty Name="eatDate" ColumnName="eatDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

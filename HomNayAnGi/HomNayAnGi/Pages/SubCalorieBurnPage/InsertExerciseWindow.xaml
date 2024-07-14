@@ -1,0 +1,61 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.Pages.SubCalorieBurnPage"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:MainResources="clr-namespace:Project.MainResources" x:Class="Project.Pages.SubCalorieBurnPage.InsertExerciseWindow"
+        mc:Ignorable="d"
+        Title="Thêm bài tập" Height="204.8" Width="370.71" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#FFF4F7A5" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Rectangle Margin="5,5,5,5" StrokeThickness="1" Stroke="#ff9933" Width="80" Height="80">
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="ExerciseImg" ImageSource="/Assets/Exercises/thumbImg.png"></ImageBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Button x:Name="AddImg_btn" Content="Thêm ảnh" Margin="5,10,5,20" Height="Auto" FontSize="10" Background="#FFFF9933" Foreground="#DD000000" Click="AddImg_btn_Click"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="0.4,0,-1,0.2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <TextBox x:Name="ExName_tb" HorizontalAlignment="Left" Height="23" Margin="95,34,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="CaloPerH_tb" HorizontalAlignment="Left" Height="23" Margin="95,88,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+                <Label Content="Tên bài tập" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" Background="#FFFFE900">
+                    <Label.BorderBrush>
+                        <SolidColorBrush Color="#FFA54B4B"/>
+                    </Label.BorderBrush>
+                </Label>
+                <Label Content="Calo đốt/giờ" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" Background="#FFFFE900"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Button x:Name="AddExercise_btn" Content="Thêm" Margin="162,27,10.2,10.4" Height="Auto" FontSize="10" Background="#FFFFDE0C" Foreground="#DD000000" Click="AddExercise_btn_Click"/>
+            </Grid>
+
+
+        </Grid>
+
+    </Grid>
+</Window>

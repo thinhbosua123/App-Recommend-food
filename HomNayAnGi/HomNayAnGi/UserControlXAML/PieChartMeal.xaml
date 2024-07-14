@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Project.UserControlXAML.PieChartMeal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:Project.UserControlXAML"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="Black" FontSize="24" FontWeight="Bold" Text="Lượng Kcal 1 ngày theo đề xuất" ></TextBlock>
+        <lvc:PieChart x:Name="MealChart" Grid.Row="1" Foreground="Black" FontSize="18" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}">
+            <lvc:PieChart.Series>
+                <lvc:PieSeries Title="Sáng" x:Name="seriBreakfast" Values="5"
+                               LabelPoint="{Binding PointLabel}" DataLabels="True" />
+                <lvc:PieSeries Title="Trưa" x:Name="seriLunch" Values="0" DataLabels="True" 
+                               LabelPoint="{Binding PointLabel}"/>
+                <lvc:PieSeries Title="Tối" x:Name="seriDinner" Values="0"  DataLabels="True"
+                               LabelPoint="{Binding PointLabel}"/>
+            </lvc:PieChart.Series>
+        </lvc:PieChart>
+    </Grid>
+</UserControl>

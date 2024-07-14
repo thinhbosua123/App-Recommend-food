@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3CF88E88-DFEC-4AAF-AC88-AEC27AF4FE72}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Project</RootNamespace>
+    <AssemblyName>HomNayAnGi</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.1.0\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=1.0.1.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.7.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Model\Exercise.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Food.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FoodDays.cs" />
+    <Compile Include="Model\FUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserExercise.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserFood.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AccountPage\AP_Response.xaml.cs">
+      <DependentUpon>AP_Response.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SubCalorieBurnPage\CongratsWindow.xaml.cs">
+      <DependentUpon>CongratsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SubCalorieBurnPage\InsertExerciseWindow.xaml.cs">
+      <DependentUpon>InsertExerciseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterPage\ForgetPassPage.xaml.cs">
+      <DependentUpon>ForgetPassPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterPage\Log_MainPage.xaml.cs">
+      <DependentUpon>Log_MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterPage\Re_Info.xaml.cs">
+      <DependentUpon>Re_Info.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterPage\Re_Account.xaml.cs">
+      <DependentUpon>Re_Account.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainResources\NotEmptyValidationRule.cs" />
+    <Compile Include="Model\DataProvider.cs" />
+    <Compile Include="Pages\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CalorieBurnPage.xaml.cs">
+      <DependentUpon>CalorieBurnPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FoodPage.xaml.cs">
+      <DependentUpon>FoodPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecommendPage.xaml.cs">
+      <DependentUpon>RecommendPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AccountPage\AP_Menu.xaml.cs">
+      <DependentUpon>AP_Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AccountPage\AP_Password.xaml.cs">
+      <DependentUpon>AP_Password.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AccountPage\AP_Profile.xaml.cs">
+      <DependentUpon>AP_Profile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SubFoodPage\InsertFoodWindow.xaml.cs">
+      <DependentUpon>InsertFoodWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SubFoodPage\RecipeWindow.xaml.cs">
+      <DependentUpon>RecipeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlXAML\PieChart.xaml.cs">
+      <DependentUpon>PieChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlXAML\PieChartMeal.xaml.cs">
+      <DependentUpon>PieChartMeal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AccountViewModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\CalorieBurnViewModel.cs" />
+    <Compile Include="ViewModel\FoodViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\RecommendViewModel.cs" />
+    <Page Include="MainResources\NavigatePageStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AccountPage\AP_Response.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SubCalorieBurnPage\CongratsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SubCalorieBurnPage\InsertExerciseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegisterPage\ForgetPassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegisterPage\Log_MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegisterPage\Re_Info.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RegisterPage\Re_Account.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainResources\ButtonMenuStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainResources\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CalorieBurnPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FoodPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecommendPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AccountPage\AP_Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AccountPage\AP_Password.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AccountPage\AP_Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SubFoodPage\InsertFoodWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SubFoodPage\RecipeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlXAML\PieChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlXAML\PieChartMeal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Resource Include="Assets\FontFamily\SVN-Shintia Script.ttf" />
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Account\user.png" />
+    <Resource Include="Assets\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\vegetable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\meat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\rice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\noodle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\seafood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\soup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\drink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\cake.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\password_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\login_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\username_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\morning_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\lunch_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\night_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Account\cancel.png" />
+    <Resource Include="Assets\Account\password.png" />
+    <Resource Include="Assets\Account\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Food\F101.jpg" />
+    <Resource Include="Assets\Food\F102.jpg" />
+    <Resource Include="Assets\Food\F103.jpg" />
+    <Resource Include="Assets\Food\F104.jpg" />
+    <Resource Include="Assets\Food\F105.jpg" />
+    <Resource Include="Assets\Food\F106.jpg" />
+    <Resource Include="Assets\Food\F107.jpg" />
+    <Resource Include="Assets\Food\F108.jpg" />
+    <Resource Include="Assets\Food\F109.jpg" />
+    <Resource Include="Assets\Food\F110.jpg" />
+    <Resource Include="Assets\Food\F301.jpg" />
+    <Resource Include="Assets\Food\F302.jpg" />
+    <Resource Include="Assets\Food\F303.jpg" />
+    <Resource Include="Assets\Food\F304.jpg" />
+    <Resource Include="Assets\Food\F305.jpg" />
+    <Resource Include="Assets\Food\F306.jpg" />
+    <Resource Include="Assets\Food\F307.jpg" />
+    <Resource Include="Assets\Food\F308.jpg" />
+    <Resource Include="Assets\Food\F309.jpg" />
+    <Resource Include="Assets\Food\F310.jpg" />
+    <Resource Include="Assets\Food\F401.jpg" />
+    <Resource Include="Assets\Food\F402.jpg" />
+    <Resource Include="Assets\Food\F403.jpg" />
+    <Resource Include="Assets\Food\F404.jpg" />
+    <Resource Include="Assets\Food\F405.jpg" />
+    <Resource Include="Assets\Food\F406.jpg" />
+    <Resource Include="Assets\Food\F407.jpg" />
+    <Resource Include="Assets\Food\F408.jpg" />
+    <Resource Include="Assets\Food\F409.jpg" />
+    <Resource Include="Assets\Food\F410.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Exercises\boi.jpg" />
+    <Resource Include="Assets\Exercises\caulong.jpg" />
+    <Resource Include="Assets\Exercises\chaybo.jpg" />
+    <Resource Include="Assets\Exercises\chaybotrenmay.jpg" />
+    <Resource Include="Assets\Exercises\dabong.jpg" />
+    <Resource Include="Assets\Exercises\dapxe.jpg" />
+    <Resource Include="Assets\Exercises\dibo.jpg" />
+    <Resource Include="Assets\Exercises\gapbung.jpg" />
+    <Resource Include="Assets\Exercises\hitdat.jpg" />
+    <Resource Include="Assets\Exercises\lacvong.jpg" />
+    <Resource Include="Assets\Exercises\nhayaerobic.jpg" />
+    <Resource Include="Assets\Exercises\nhayday.jpg" />
+    <Resource Include="Assets\Exercises\plank.jpg" />
+    <Resource Include="Assets\Exercises\squat.jpg" />
+    <Resource Include="Assets\Exercises\tennis.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RegisterPage\logoo.jpg" />
+    <Resource Include="Assets\Account\clip.png" />
+    <Resource Include="Assets\logo_icon.ico" />
+    <Resource Include="Assets\login.jpg" />
+    <Resource Include="Assets\logoo.jpg" />
+    <Content Include="Model\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Assets\Account\response.png" />
+    <Resource Include="Assets\History\bar-chart.png" />
+    <Resource Include="Assets\History\history.png" />
+    <Resource Include="Assets\Food\F210.png" />
+    <Resource Include="Assets\Food\F209.png" />
+    <Resource Include="Assets\Food\F208.jpg" />
+    <Resource Include="Assets\Food\F207.jpg" />
+    <Resource Include="Assets\Food\F206.png" />
+    <Resource Include="Assets\Food\F205.jpg" />
+    <Resource Include="Assets\Food\F204.jpg" />
+    <Resource Include="Assets\Food\F203.jpg" />
+    <Resource Include="Assets\Food\F202.jpg" />
+    <Resource Include="Assets\Food\F201.png" />
+    <Resource Include="Assets\Food\F010.jpg" />
+    <Resource Include="Assets\Food\F009.jpg" />
+    <Resource Include="Assets\Food\F008.jpg" />
+    <Resource Include="Assets\Food\F007.jpg" />
+    <Resource Include="Assets\Food\F006.jpg" />
+    <Resource Include="Assets\Food\F005.jpg" />
+    <Resource Include="Assets\Food\F004.jpg" />
+    <Resource Include="Assets\Food\F003.jpg" />
+    <Resource Include="Assets\Food\F002.jpg" />
+    <Resource Include="Assets\Food\F001.jpg" />
+    <Resource Include="Assets\Food\F510.jpg" />
+    <Resource Include="Assets\Food\F509.jpg" />
+    <Resource Include="Assets\Food\F507.jpg" />
+    <Resource Include="Assets\Food\F506.jpg" />
+    <Resource Include="Assets\Food\F505.jpg" />
+    <Resource Include="Assets\Food\F504.jpg" />
+    <Resource Include="Assets\Food\F503.jpg" />
+    <Resource Include="Assets\Food\F502.jpg" />
+    <Resource Include="Assets\Food\F501.jpg" />
+    <Resource Include="Assets\Food\F508.jpg" />
+    <Resource Include="Assets\food_default.png" />
+    <Resource Include="Assets\Exercises\thumbImg.png" />
+    <Resource Include="Assets\background.png" />
+    <Resource Include="Assets\Exercises\complete.gif" />
+    <Content Include="Assets\Exercises\complete_sound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.4.7.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.7.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.7.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.7.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

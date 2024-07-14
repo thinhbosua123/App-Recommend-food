@@ -1,0 +1,84 @@
+﻿<Page x:Class="Project.RegisterPage.ForgetPassPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Project.RegisterPage"
+      mc:Ignorable="d" 
+      xmlns:mainrsc="clr-namespace:Project.MainResources"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+      
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ForgetPassPage">
+    <StackPanel Width="300" Orientation="Vertical">
+        <Image Source="/RegisterPage/logoo.jpg"
+                           Width="150"
+                           Height="150"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap">
+            <Run Text="Quên mật khẩu" Foreground="DarkSlateGray"    
+                   FontSize="25"          
+                   FontWeight="Medium"          
+                   FontFamily="Montserrat"></Run>
+        </TextBlock>
+        <TextBlock Margin="5" FontStyle="Italic" Text="Vui lòng điền tên tài khoản của bạn đang sử dụng để đăng nhập và email cá nhân" TextWrapping="Wrap"></TextBlock>
+        <StackPanel Margin="5 5 5 20" Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="Email" VerticalAlignment="Center" Width="30" Height="30" Margin="0 0 8 0" />
+            <TextBox Width="250" Padding="10 20 10 10" FontSize="15" x:Name="Mail_txt"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Email cá nhân"
+            materialDesign:HintAssist.FloatingScale="0.8"
+            materialDesign:HintAssist.FloatingOffset="-5,-15"
+            materialDesign:HintAssist.Background="Transparent"
+            materialDesign:ValidationAssist.Background="Transparent">
+                <TextBox.Text>
+                    <Binding
+                    Path="Text"
+                    UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <mainrsc:NotEmptyValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Margin="5 5 5 20" Orientation="Horizontal">
+            <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Width="30" Height="30" Margin="0 0 8 0" />
+            <TextBox Width="250" FontSize="15" Padding="10 20 10 10" x:Name="Acc_txt"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Tài khoản đăng nhập" 
+            materialDesign:HintAssist.FloatingScale="0.8"
+            materialDesign:HintAssist.FloatingOffset="-5,-15"
+            materialDesign:HintAssist.Background="Transparent" 
+            materialDesign:ValidationAssist.Background="Transparent">
+                <TextBox.Text>
+                    <Binding
+                    Path="Text"
+                    UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <mainrsc:NotEmptyValidationRule
+                            ValidatesOnTargetUpdated="True"  />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </StackPanel>
+        <Button Click="GetPass_Click" x:Name="GetPass" Margin="0 20 0 0" HorizontalAlignment="Center" Content="Nhận mật khẩu mới"></Button>
+        <TextBlock Text="Trở về trang đăng nhập"
+                               Foreground="#1a85f0"
+                               FontSize="15"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               HorizontalAlignment="Center"
+                               Margin="32,15,32.6,0"
+                               Cursor="Hand" MouseDown="TextBlock_MouseDown" TextDecorations="Underline"/>
+    </StackPanel>
+</Page>

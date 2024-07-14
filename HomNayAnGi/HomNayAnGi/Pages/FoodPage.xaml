@@ -1,0 +1,421 @@
+﻿<Page x:Class="Project.Pages.FoodPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Project.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FoodPage"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+      Name="foodpage"
+      Style="{StaticResource Page_Style}"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="Segoe UI" Loaded="foodpage_Loaded"  >
+    <Page.Resources>
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border x:Name="rectangle"
+                                SnapsToDevicePixels="True"
+                                Background="#FFFFC200"
+                                CornerRadius="3"
+                                Height="{TemplateBinding Height}"
+                                Width="{TemplateBinding Width}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Margin" Value="-14 0 0 0" />
+            <Setter Property="MinWidth" Value="{Binding Width, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="Bg" SnapsToDevicePixels="true" Background="Transparent">
+                            <Border Padding="0 4">
+                                <Track x:Name="PART_Track"
+                                               IsDirectionReversed="true"
+                                               Width="12"
+                                               HorizontalAlignment="Center">
+                                    <Track.Thumb>
+                                        <Thumb Style="{StaticResource ScrollBarThumb}" />
+                                    </Track.Thumb>
+                                </Track>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Height" Value="140"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Margin" Value="-5,0,0,5"/>
+            <Setter Property="Background" Value="GhostWhite"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton" >
+                        <Grid>
+                            <Rectangle RadiusX="20" RadiusY="20" Fill="{TemplateBinding Background}">
+                                <Rectangle.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Stroke>
+                            </Rectangle>
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <!--Button Style on hover-->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFFFC200"/>
+                    <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+                </Trigger>
+                <!--Activated button style-->
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="#FFFFC200"/>
+                    <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" Margin="0 0 0 20">
+                <TextBlock
+                    FontSize="50"
+                    Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                    Text="Hôm  nay  ăn  gì  ?" FontFamily="/Assets/FontFamily/#SVN-Shintia Script" />
+            </DockPanel>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="ComRadioBtn" Grid.Column="0" Checked="ComButton_Checked">
+                    <StackPanel Width="80" HorizontalAlignment="Center">
+                        <Ellipse Width="50" Height="50" StrokeThickness="0.5" Stroke="Black">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Assets/rice.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Margin="0 10 0 0" Text="Cơm" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Grid.Column="1" Checked="MNButton_Checked">
+                    <StackPanel Width="80" HorizontalAlignment="Center">
+                        <Ellipse Width="50" Height="50" StrokeThickness="0.5" Stroke="Black">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Assets/noodle.png" Stretch="Fill" TileMode="None"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Margin="0 10 0 0" Text="Món nước" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Grid.Column="2" Checked="DBButton_Checked">
+                    <StackPanel Width="80" HorizontalAlignment="Center">
+                        <Ellipse Width="50" Height="50" StrokeThickness="0.5" Stroke="Black">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Assets/seafood.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Margin="0 10 0 0" Text="Đồ biển" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Grid.Column="3" Checked="CanhButton_Checked">
+                    <StackPanel Width="80" HorizontalAlignment="Center">
+                        <Ellipse Width="50" Height="50" StrokeThickness="0.5" Stroke="Black">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Assets/soup.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Margin="0 10 0 0" Text="Canh" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Grid.Column="4" Checked="TUButton_Checked">
+                    <StackPanel Width="80" HorizontalAlignment="Center">
+                        <Ellipse Width="50" Height="50" StrokeThickness="0.5" Stroke="Black">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Assets/drink.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Margin="0 10 0 0" Text="Thức uống" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Grid.Column="5" Checked="AVButton_Checked">
+                    <StackPanel Width="80" HorizontalAlignment="Center">
+                        <Ellipse Width="50" Height="50" StrokeThickness="0.5" Stroke="Black">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Assets/cake.jpg" Stretch="Fill" Viewport="0,0,1,1"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Margin="0 10 0 0" Text="Đồ ăn vặt" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel  Margin="0 10 0 20" Grid.Row="0">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Lọc theo : " Margin="0 0 5 0" VerticalAlignment="Center"></Label>
+                        <TextBox
+                            TextChanged="txtFilter_TextChanged"
+                            x:Name="txtFilter"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            MaxWidth="400"
+                            Width="200"
+                            />
+                        <Button
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Margin="5"
+                                Height="25"
+                                Width="100"
+                                materialDesign:ButtonAssist.CornerRadius="12"
+                                Click="InsertButton_Click"
+                                >
+                            <TextBlock Text="Thêm món">
+                            </TextBlock>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
+                        <Label Content="Sắp xếp theo :" VerticalAlignment="Center"></Label>
+                        <ComboBox
+                            x:Name="ComboBox_sort"
+                            Margin="5"
+                        BorderBrush="Black"
+                        Width="100"
+                        Height="30" SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBoxItem
+                            Content="Calorie" />
+                            <ComboBoxItem
+                            Content="Tên" />
+                        </ComboBox>
+                    </StackPanel>
+
+                </DockPanel>
+                <Grid Grid.Row="1" x:Name="Grid_lv">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding foodList}"  Name="lvDataBinding" SelectionChanged="lvDataBinding_SelectionChanged">
+
+                            <ListView.ItemTemplate >
+                                <DataTemplate>
+                                    <materialDesign:Card
+                                        materialDesign:ElevationAssist.Elevation="Dp2">
+                                        <Border CornerRadius="12" Background="White" >
+                                            <Grid Margin="0 0 -30 0" Width="{Binding ElementName=Grid_lv , Path=ActualWidth}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.Resources>
+                                                    <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsChecked" Value="True">
+                                                                <Setter Property="Foreground" Value="#DC3535"/>
+                                                                <Setter Property="FontWeight" Value="Bold"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Grid.Resources>
+                                                <Grid Grid.Column="0">
+                                                    <Rectangle Margin="0 0 10 0" Width="70" Height="70" >
+                                                        <Rectangle.Fill>
+                                                            <ImageBrush ImageSource="{Binding Food.Imgsrc}"></ImageBrush>
+                                                        </Rectangle.Fill>
+                                                    </Rectangle>
+                                                </Grid>
+                                                <StackPanel Orientation="Vertical" Margin="0 10 0 0" Grid.Column="1">
+                                                    <TextBlock TextWrapping="Wrap" Margin="4">
+                                                        <Run Text="{Binding Food.FoodName}" FontSize="15" FontWeight="Bold"></Run>
+                                                        <LineBreak></LineBreak>
+                                                        <Run Text="Kcal : " FontWeight="Bold" ></Run>
+                                                        <Run Text="{Binding Food.Kcal}" ></Run>
+                                                        <Run Text="/"  ></Run>
+                                                        <Run Text="{Binding Food.DonVi}"  ></Run>
+                                                        <LineBreak></LineBreak>
+                                                        <Run Text="Chất béo :" FontWeight="Bold"></Run>
+                                                        <Run Text="{Binding Food.Fat, StringFormat={}{0}g}"></Run>
+                                                        <Run Text=", Chất đạm :" FontWeight="Bold"></Run>
+                                                        <Run Text="{Binding Food.Protein, StringFormat={}{0}g}"></Run>
+                                                        <Run Text=", Tinh bột :" FontWeight="Bold"></Run>
+                                                        <Run Text="{Binding Food.Carbs, StringFormat={}{0}g}"></Run>
+                                                        <LineBreak></LineBreak>
+                                                        <Run Text="{Binding Food.Descript}" FontStyle="Italic" FontSize="13"></Run>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                                <ToggleButton
+                                                              IsChecked="{Binding Favourite}"
+                                                        Click="favorite_button_Click"
+                                                        Grid.Column="2"
+                                                        HorizontalAlignment="Right"
+                                                        materialDesign:ToggleButtonAssist.OnContent="{materialDesign:PackIcon Kind=Heart}"
+                                                        Content="{materialDesign:PackIcon Kind=CardsHeartOutline}"
+                                                        Background="#FFDB89"/>
+
+                                                <StackPanel Margin="0 0 30 0" Grid.Column="3" Orientation="Horizontal">
+
+                                                    <TextBlock FontWeight="Bold" FontStyle="Italic" Margin="5 0 5 5" Padding="30 0 30 0" VerticalAlignment="Bottom">
+                                                        <Run Text="Lần ăn trước : "></Run>
+                                                        <Run Text="{Binding _Date}"></Run>
+                                                    </TextBlock>
+                                                    <Button
+                                                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                        Margin="3"
+                                                        Height="50"
+                                                        Width="50"
+                                                        materialDesign:ButtonAssist.CornerRadius="50"
+                                                        Click="DelButton_Click">
+                                                        <materialDesign:PackIcon Kind="Delete" />
+                                                    </Button>
+                                                </StackPanel>
+
+                                            </Grid>
+                                        </Border>
+                                    </materialDesign:Card>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </Grid>
+
+            </Grid>
+        </Grid>
+        <Grid Margin="15 0 0 0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Margin" Value="8"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock x:Name="HelloTime_tb" FontSize="20" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now},
+           StringFormat='{}{0:ddd , dd MMM , yyyy }'}" FontWeight="Bold" FontSize="16" Language="vi">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF438989" Offset="0"/>
+                            <GradientStop Color="#FF76F311" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </StackPanel>
+            <Grid Grid.Row="1" x:Name="Grid_lb">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Món ăn đã chọn" FontSize="20" HorizontalAlignment="Center" Margin="0 10 0 10"></TextBlock>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <ListBox x:Name="SelectedFood_lv" BorderThickness="2" BorderBrush="#FFFFC200" >
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card
+                                materialDesign:ElevationAssist.Elevation="Dp2">
+                                    <Border CornerRadius="12" Background="White"  >
+                                        <Grid Width="{Binding ElementName=Grid_lb , Path=ActualWidth}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                <Rectangle Margin="0 0 10 0" Width="50" Height="50">
+                                                    <Rectangle.Fill>
+                                                        <ImageBrush ImageSource="{Binding Food.Imgsrc}"></ImageBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <TextBlock VerticalAlignment="Center" Width="140" Text="{Binding Food.FoodName}" TextWrapping="Wrap" FontWeight="Bold" />
+                                            </StackPanel>
+                                            <Button Grid.Column="1"
+                                                    Margin="-10 0 0 0"
+                                                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                    Height="30"
+                                                    Padding="-10"
+                                                    Width="30"
+                                                    materialDesign:ButtonAssist.CornerRadius="50"
+                                                    Click="DelSelected_Click"
+                                                    >
+                                                <materialDesign:PackIcon Kind="Close" HorizontalAlignment="Center" Width="15" Height="15"/>
+                                            </Button>
+
+                                        </Grid>
+                                    </Border>
+                                </materialDesign:Card>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+                <Button
+                        Grid.Row="2"
+                        Click="ReviewRecipeBtn_Click"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Margin="5"
+                        Height="30"
+                        Width="100"
+                        materialDesign:ButtonAssist.CornerRadius="12"
+                        >
+                    <TextBlock Text="Chấp nhận" />
+                </Button>
+            </Grid>
+
+            <StackPanel Grid.Row="2" Margin="10 10 10 20">
+                <TextBlock Text="Lượng Kcal hằng ngày" HorizontalAlignment="Center" FontSize="16"></TextBlock>
+                <lvc:Gauge Grid.Row="0" Grid.Column="0" Margin="5"
+                           x:Name="Gauge_Kcal"
+                           From="0" Value="0"
+                           Height="100" GaugeActiveFill="#FFFFC200" >
+
+                </lvc:Gauge>
+                <TextBlock Visibility="Hidden" x:Name="kcal_txt" Text="Lượng kcal vượt quá mức quy định !" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Red"></TextBlock>
+                <Button Width="40" Height="40" Click="ResetKcalButton_Click"
+                        ToolTip="Tạo lại lượng Kcal hằng ngày"
+                    Style="{StaticResource MaterialDesignFloatingActionLightButton}"  >
+                    <materialDesign:PackIcon Kind="Reload"  Width="30" Height="30"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
