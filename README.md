@@ -1,4 +1,5 @@
-# Hôm nay ăn gì ? 
+# ĐỒ ÁN CƠ SỞ 
+# APP HÔM NAY ĂN GÌ
 
 Hôm nay ăn gì là 1 ứng dụng quản lý các món ăn , giúp cho người dùng có một bữa ăn lành mạnh , đầy đủ
 
